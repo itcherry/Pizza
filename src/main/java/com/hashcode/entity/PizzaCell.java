@@ -3,9 +3,9 @@ package com.hashcode.entity;
 public class PizzaCell {
     private int row;
     private int col;
-    private char ingredient;
+    private PizzaIngredient ingredient;
 
-    public PizzaCell(int row, int col, char ingredient) {
+    public PizzaCell(int row, int col, PizzaIngredient ingredient) {
         this.row = row;
         this.col = col;
         this.ingredient = ingredient;
@@ -27,11 +27,11 @@ public class PizzaCell {
         this.col = col;
     }
 
-    public char getIngredient() {
+    public PizzaIngredient getIngredient() {
         return ingredient;
     }
 
-    public void setIngredient(char ingredient) {
+    public void setIngredient(PizzaIngredient ingredient) {
         this.ingredient = ingredient;
     }
 }
