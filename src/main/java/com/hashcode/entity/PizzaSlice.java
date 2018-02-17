@@ -85,6 +85,23 @@ public class PizzaSlice {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PizzaSlice that = (PizzaSlice) o;
+        return rowTop == that.rowTop &&
+                rowBottom == that.rowBottom &&
+                colLeft == that.colLeft &&
+                colRight == that.colRight &&
+                com.google.common.base.Objects.equal(sliceCells, that.sliceCells);
+    }
+
+    @Override
+    public int hashCode() {
+        return com.google.common.base.Objects.hashCode(rowTop, rowBottom, colLeft, colRight, sliceCells);
+    }
+
     public static class Builder {
         private int rowTop;
         private int rowBottom;

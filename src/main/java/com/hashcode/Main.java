@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Start program!");
 
-        String currentFile = FILENAME_EXAMPLE;
+        String currentFile = FILENAME_SMALL;
 
         PizzaFileReader reader = new PizzaFileReader("D:\\Studying\\java\\Pizza\\src\\assets\\input");
         Pizza pizza = reader.readPizzaFromFile(currentFile);
