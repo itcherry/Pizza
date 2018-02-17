@@ -7,38 +7,48 @@ import static com.hashcode.entity.PizzaIngredient.MUSHROOM;
 import static com.hashcode.entity.PizzaIngredient.TOMATO;
 
 public class PizzaSlice {
-    private int rowLeft;
-    private int rowRight;
-    private int colUpper;
-    private int colDown;
+    private int rowUpper;
+    private int rowDown;
+    private int colLeft;
+    private int colRight;
     private List<PizzaCell> sliceCells;
 
-    private PizzaSlice(int rowLeft, int rowRight, int colUpper, int colDown, List<PizzaCell> sliceCells) {
-        this.rowLeft = rowLeft;
-        this.rowRight = rowRight;
-        this.colUpper = colUpper;
-        this.colDown = colDown;
+    private PizzaSlice(int rowUpper, int rowDown, int colLeft, int colRight, List<PizzaCell> sliceCells) {
+        this.rowUpper = rowUpper;
+        this.rowDown = rowDown;
+        this.colLeft = colLeft;
+        this.colRight = colRight;
         this.sliceCells = sliceCells;
     }
 
-    public int getRowLeft() {
-        return rowLeft;
+    public int getRowUpper() {
+        return rowUpper;
     }
 
-    public int getRowRight() {
-        return rowRight;
+    public int getRowDown() {
+        return rowDown;
     }
 
-    public int getColUpper() {
-        return colUpper;
+    public int getColLeft() {
+        return colLeft;
     }
 
-    public int getColDown() {
-        return colDown;
+    public int getColRight() {
+        return colRight;
     }
 
     public List<PizzaCell> getSliceCells() {
         return sliceCells;
+    }
+
+    public int getLeastIngredientQuantity(PizzaIngredient leastIngredient){
+        switch (leastIngredient) {
+            case TOMATO:
+                return getTomatoQuantity();
+            case MUSHROOM:
+                return getMushroomQuantity();
+        }
+        return 0;
     }
 
     private int getTomatoQuantity(){
@@ -63,30 +73,39 @@ public class PizzaSlice {
         return quantity;
     }
 
+    public String toString(){
+        StringBuilder result = new StringBuilder("[");
+        for (PizzaCell cell: sliceCells) {
+            result.append(cell.getIngredient() + ", ");
+        }
+        result.append("]");
+        return result.toString();
+    }
+
     public static class Builder {
-        private int rowLeft;
-        private int rowRight;
-        private int colUpper;
-        private int colDown;
+        private int rowUpper;
+        private int rowDown;
+        private int colLeft;
+        private int colRight;
         private List<PizzaCell> sliceCells;
 
-        public Builder setRowLeft(int rowLeft) {
-            this.rowLeft = rowLeft;
+        public Builder setRowUpper(int rowUpper) {
+            this.rowUpper = rowUpper;
             return this;
         }
 
-        public Builder setRowRight(int rowRight) {
-            this.rowRight = rowRight;
+        public Builder setRowDown(int rowDown) {
+            this.rowDown = rowDown;
             return this;
         }
 
-        public Builder setColUpper(int colUpper) {
-            this.colUpper = colUpper;
+        public Builder setColLeft(int colLeft) {
+            this.colLeft = colLeft;
             return this;
         }
 
-        public Builder setColDown(int colDown) {
-            this.colDown = colDown;
+        public Builder setColRight(int colRight) {
+            this.colRight = colRight;
             return this;
         }
 
@@ -96,7 +115,7 @@ public class PizzaSlice {
         }
 
         public PizzaSlice build() {
-            return new PizzaSlice(rowLeft, rowRight, colUpper, colDown, sliceCells);
+            return new PizzaSlice(rowUpper, rowDown, colLeft, colRight, sliceCells);
         }
     }
 }

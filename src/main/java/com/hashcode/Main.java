@@ -16,9 +16,9 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Start program!");
 
-        String currentFile = FILENAME_EXAMPLE;
+        String currentFile = FILENAME_BIG;
 
-        PizzaFileReader reader = new PizzaFileReader("D:\\Studying\\java\\Pizza\\src\\assets\\input");
+        PizzaFileReader reader = new PizzaFileReader("D:\\Pizza-master\\src\\assets\\input");
         Pizza pizza = reader.readPizzaFromFile(currentFile);
 
         System.out.println("Pizza from file " + currentFile + ":");
@@ -26,6 +26,14 @@ public class Main {
 
         SliceAlgorithm algorithm = new SliceAlgorithm(pizza);
         List<PizzaSlice> slices = algorithm.cutOffPizza();
+
+        System.out.println(slices.toString());
+        int resultCells = 0;
+        for (PizzaSlice slice :slices) {
+            resultCells += slice.getSliceCells().size();
+        }
+
+        System.out.println("RESULT: " + resultCells + " / " + pizza.getCols()*pizza.getRows());
 
         System.out.println("End program!");
     }
