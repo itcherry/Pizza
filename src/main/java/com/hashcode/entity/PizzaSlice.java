@@ -13,6 +13,7 @@ public class PizzaSlice {
     private int colRight;
     private List<PizzaCell> sliceCells;
 
+
     private PizzaSlice(int rowTop, int rowBottom, int colLeft, int colRight, List<PizzaCell> sliceCells) {
         this.rowTop = rowTop;
         this.rowBottom = rowBottom;
@@ -44,6 +45,25 @@ public class PizzaSlice {
         return sliceCells;
     }
 
+    public int getLeastIngredientQuantity(PizzaIngredient leastIngredient){
+        switch (leastIngredient) {
+            case TOMATO:
+                return getTomatoQuantity();
+            case MUSHROOM:
+                return getMushroomQuantity();
+        }
+        return 0;
+    }
+
+    private int getTomatoQuantity(){
+        Objects.requireNonNull(sliceCells);
+        int quantity = 0;
+        for (PizzaCell cell: sliceCells) {
+            if(cell.getIngredient() == TOMATO.getCharacter()){
+                quantity ++;
+            }
+        }
+        return quantity;
     public void setRowTop(int rowTop) {
         this.rowTop = rowTop;
     }
@@ -102,6 +122,15 @@ public class PizzaSlice {
         return com.google.common.base.Objects.hashCode(rowTop, rowBottom, colLeft, colRight, sliceCells);
     }
 
+    public String toString(){
+        StringBuilder result = new StringBuilder("[");
+        for (PizzaCell cell: sliceCells) {
+            result.append(cell.getIngredient() + ", ");
+        }
+        result.append("]");
+        return result.toString();
+    }
+
     public static class Builder {
         private int rowTop;
         private int rowBottom;
@@ -109,7 +138,15 @@ public class PizzaSlice {
         private int colRight;
         private List<PizzaCell> sliceCells;
 
-        public Builder setRowTop(int rowTop) {
+        public Builder setRowUpper(int rowUpper) {
+            this.rowUpper = rowUpper;
+            return this;
+        }
+
+        public Builder setRowDown(int rowDown) {
+            this.rowDown = rowDown;
+
+          public Builder setRowTop(int rowTop) {
             this.rowTop = rowTop;
             return this;
         }

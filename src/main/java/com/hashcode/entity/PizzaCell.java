@@ -34,4 +34,8 @@ public class PizzaCell {
     public void setIngredient(PizzaIngredient ingredient) {
         this.ingredient = ingredient;
     }
+
+    public String toString(){
+        return String.valueOf(ingredient);
+    }
 }
